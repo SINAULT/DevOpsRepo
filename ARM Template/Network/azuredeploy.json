@@ -1,0 +1,76 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string",
+            "defaultValue": "westeurope"
+        },
+        "virtualNetworkName": {
+            "type": "string",
+            "defaultValue": "WEUDSTVNTZZZF00"
+        },
+        "resourceGroup": {
+            "type": "string",
+            "defaultValue": "WEUDSTRSGZZZF00"
+        },
+        "addressSpaces": {
+            "type": "array"
+        },
+        "ipv6Enabled": {
+            "type": "bool",
+            "defaultValue": false
+        },
+        "subnetCount": {
+            "type": "int",
+            "defaultValue": 1
+        },
+        "subnet0_name": {
+            "type": "string",
+            "defaultValue": "Default"
+        },
+        "subnet0_addressRange": {
+            "type": "string",
+            "defaultValue": "192.168.1.0/24"
+        },
+        "ddosProtectionPlanEnabled": {
+            "type": "bool",
+            "defaultValue": false
+        },
+        "firewallEnabled": {
+            "type": "bool",
+            "defaultValue": false
+        },
+        "bastionEnabled": {
+            "type": "bool",
+            "defaultValue": false
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "name": "[parameters('virtualNetworkName')]",
+            "type": "Microsoft.Network/VirtualNetworks",
+            "apiVersion": "2019-09-01",
+            "location": "[parameters('location')]",
+            "dependsOn": [],
+            "tags": {},
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "192.168.1.0/24"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "Default",
+                        "properties": {
+                            "addressPrefix": "192.168.1.0/24"
+                        }
+                    }
+                ],
+                "enableDdosProtection": "[parameters('ddosProtectionPlanEnabled')]"
+            }
+        }
+    ]
+}
