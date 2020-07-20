@@ -1,0 +1,71 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westeurope"
+        },
+        "virtualNetworkName": {
+            "value": "WEUDSTVNTZZZF00"
+        },
+        "NetworkGroup_Id":{
+            "value": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/networkSecurityGroups/"
+        },
+        "resourceGroup": {
+            "value": "WEUDSTRSGZZZF00"
+        },
+        "addressSpaces": {
+            "value": [
+                "192.168.1.0/24"
+            ]
+        },
+        "ipv6Enabled": {
+            "value": false
+        },
+        "subnetCount": {
+            "value": 4
+        },
+        "subnet0_name": {
+            "value": "DomainServices"
+        },
+        "subnet0_addressRange": {
+            "value": "192.168.1.0/28"
+        },
+        "subnet1_name": {
+            "value": "DomainAdministration"
+        },
+        "subnet1_addressRange": {
+            "value": "192.168.1.16/29"
+        },
+        "networkSecurityGroupName1": {
+            "value": "WEUDSTNSGZZZF01"
+        },
+        "subnet2_name": {
+            "value": "Storage"
+        },
+        "subnet2_addressRange": {
+            "value": "192.168.1.24/29"
+        },
+        "networkSecurityGroupName2": {
+            "value": "WEUDSTNSGZZZF02"
+        },
+        "subnet3_name": {
+            "value": "WVD"
+        },
+        "subnet3_addressRange": {
+            "value": "192.168.1.32/27"
+        },
+        "networkSecurityGroupName3": {
+            "value": "WEUDSTNSGZZZF03"
+        },
+        "ddosProtectionPlanEnabled": {
+            "value": false
+        },
+        "firewallEnabled": {
+            "value": false
+        },
+        "bastionEnabled": {
+            "value": false
+        }
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "apiVersion": {
+            "value": "2017-06-01"
+        },
+        "sku": {
+            "value": "Standard"
+        },
+        "domainConfigurationType": {
+            "value": "FullySynced"
+        },
+        "domainName": {
+            "value": null
+        },
+        "filteredSync": {
+            "value": "Enabled"
+        },
+        "location": {
+            "value": "westeurope"
+        },
+        "notificationSettings": {
+            "value": {
+                "notifyGlobalAdmins": "Enabled",
+                "notifyDcAdmins": "Enabled",
+                "additionalRecipients": []
+            }
+        },
+        "subnetName": {
+            "value": "DomainServices"
+        },
+        "vnetName": {
+            "value": "WEUDSTVNTZZZF00"
+        },
+        "vnetResourceGroup": {
+            "value": "WEUDSTRSGZZZF00"
+        },
+        "subnetAddressPrefix": {
+            "value": "192.168.1.0/28"
+        },
+        "nsgName": {
+            "value": "WEUDSTNSGZZZF00"
+        }
+    }
+}

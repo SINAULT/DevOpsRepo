@@ -1,0 +1,71 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westeurope"
+        },
+        "Prefix":{
+            "value": null
+        },
+        "virtualMachineRG": {
+            "value": "WEUDSTRSGZZZF00"
+        },
+        "virtualMachineName": {
+            "value": "WEUDSTVMWZZZF"
+        },
+        "OSDiskName":{
+            "value": "WEUDSTMDKZZZF"
+        },
+        "networkInterfaceName": {
+            "value": "WEUDSTNICZZZF"
+        },
+        "networkSecurityGroupName": {
+            "value": "WEUDSTNSGZZZF"
+        },
+        "publicIpAddressName": {
+            "value": "WEUDSTPIPZZZF"
+        },
+        "networkSecurityGroupRules": {
+            "value": [
+                {
+                    "name": "RDP",
+                    "properties": {
+                        "priority": 300,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "3389"
+                    }
+                }
+            ]
+        },
+        "subnetName": {
+            "value": "default"
+        },
+        "virtualNetworkId": {
+            "value": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        },
+        "osDiskType": {
+            "value": "StandardSSD_LRS"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_B2s"
+        },
+        "adminUsername": {
+            "value": "administrateur"
+        },
+        "adminPassword": {
+            "value": "Slash2009!!!"
+        }
+    }
+}

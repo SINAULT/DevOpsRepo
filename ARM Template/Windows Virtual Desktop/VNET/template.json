@@ -1,0 +1,129 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string"
+        },
+        "virtualNetworkName": {
+            "type": "string"
+        },
+        "resourceGroup": {
+            "type": "string"
+        },
+        "NetworkGroup_Id":{
+            "type": "string"
+        },
+        "addressSpaces": {
+            "type": "array"
+        },
+        "ipv6Enabled": {
+            "type": "bool"
+        },
+        "subnetCount": {
+            "type": "int"
+        },
+        "subnet0_name": {
+            "type": "string"
+        },
+        "subnet0_addressRange": {
+            "type": "string"
+        },
+        "subnet1_name": {
+            "type": "string"
+        },
+        "subnet1_addressRange": {
+            "type": "string"
+        },
+        "networkSecurityGroupName1": {
+            "type": "string"
+        },
+        "subnet2_name": {
+            "type": "string"
+        },
+        "subnet2_addressRange": {
+            "type": "string"
+        },
+        "networkSecurityGroupName2": {
+            "type": "string"
+        },
+        "subnet3_name": {
+            "type": "string"
+        },
+        "subnet3_addressRange": {
+            "type": "string"
+        },
+        "networkSecurityGroupName3": {
+            "type": "string"
+        },
+        "ddosProtectionPlanEnabled": {
+            "type": "bool"
+        },
+        "firewallEnabled": {
+            "type": "bool"
+        },
+        "bastionEnabled": {
+            "type": "bool"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "name": "[parameters('virtualNetworkName')]",
+            "type": "Microsoft.Network/VirtualNetworks",
+            "apiVersion": "2019-09-01",
+            "location": "[parameters('location')]",
+            "dependsOn": [],
+            "tags": {},
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "192.168.1.0/24"
+                    ]
+                },
+                "dhcpOptions": {
+                    "dnsServers": [
+                        "192.168.1.4",
+                        "192.168.1.5"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "DomainServices",
+                        "properties": {
+                            "addressPrefix": "192.168.1.0/28"
+                        }
+                    },
+                    {
+                        "name": "DomainAdministration",
+                        "properties": {
+                            "addressPrefix": "192.168.1.16/29",
+                            "networkSecurityGroup": {
+                                "id": "[concat(parameters('NetworkGroup_Id'),parameters('networkSecurityGroupName1'))]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Storage",
+                        "properties": {
+                            "addressPrefix": "192.168.1.24/29",
+                            "networkSecurityGroup": {
+                                "id": "[concat(parameters('NetworkGroup_Id'),parameters('networkSecurityGroupName2'))]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "WVD",
+                        "properties": {
+                            "addressPrefix": "192.168.1.32/27",
+                            "networkSecurityGroup": {
+                                "id": "[concat(parameters('NetworkGroup_Id'),parameters('networkSecurityGroupName3'))]"
+                            }
+                        }
+                    }
+                ],
+                "enableDdosProtection": "[parameters('ddosProtectionPlanEnabled')]"
+            }
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Prefix": {
+            "value": null
+        },
+        "networkInterfaceName": {
+            "value": "WEUDSTNICZZZF"
+        },
+        "publicIpAddressName": {
+            "value": "WEUDSTPIPZZZF"
+        },
+        "OSDiskName": {
+            "value" : "WEUDSTMDKZZZF"
+        },
+      "dnsLabelPrefix": {
+        "value": "WEUDSTVMWZZZF"
+      },
+      "existingVNETName": {
+        "value": "WEUDSTVNTZZZF00"
+      },
+      "existingSubnetName": {
+        "value": "DomainAdministration"
+      },
+      "vmSize": {
+        "value": "Standard_B2s"
+      },
+      "domainToJoin": {
+        "value": null
+      },
+      "domainUsername": {
+        "value": null
+      },
+      "domainPassword": {
+        "value": null
+      },
+      "vmAdminUsername": {
+        "value": "administrateur"
+      },
+      "vmAdminPassword": {
+        "value": null
+      }
+    }
+}

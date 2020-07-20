@@ -1,0 +1,77 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westeurope"
+        },
+        "Prefix":{
+            "value": null
+        },
+        "ScriptUrl":{
+            "value": "https://raw.githubusercontent.com/SINAULT/azurerepository/master/Linux/script-docker-k8s.sh"
+        },
+        "ScriptCommand":{
+            "value": "./script-docker-k8s.sh"
+        },
+        "virtualMachineRG": {
+            "value": "WEUDSTRSGZZZF00"
+        },
+        "virtualMachineName": {
+            "value": "WEUDSTVMLZZZF"
+        },
+        "OSDiskName":{
+            "value": "WEUDSTMDKZZZF"
+        },
+        "networkInterfaceName": {
+            "value": "WEUDSTNICZZZF"
+        },
+        "publicIpAddressName": {
+            "value": "WEUDSTPIPZZZF"
+        },
+        "networkSecurityGroupName": {
+            "value": "WEUDSTNSGZZZF"
+        },
+        "networkSecurityGroupRules": {
+            "value": [
+                {
+                    "name": "SSH",
+                    "properties": {
+                        "priority": 300,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "22"
+                    }
+                }
+            ]
+        },
+        "subnetName": {
+            "value": "default"
+        },
+        "virtualNetworkId": {
+            "value": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        },        
+        "osDiskType": {
+            "value": "StandardSSD_LRS"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_B2s"
+        },
+        "adminUsername": {
+            "value": "administrateur"
+        },
+        "adminPassword": {
+            "value": "Slash2009!!!"
+        }
+    }
+}
