@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
 		"ADSyncOption": { 
-			"type": "string",
+			"type": "array",
             "allowedValues":[
                 "None",
                 "AADDS",
@@ -11,31 +11,40 @@
             ]
 		},
 		"ShareSize": { 
-			"type": "int" 
+			"type": "int",
+            "defaultValue": 100 
 		},
 		"ShareName": { 
-			"type": "string"
+			"type": "string",
+            "defaultValue": "azure-share"
 		},
         "location": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "westeurope"
         },
         "storageAccountName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "weudststozzzf00"
         },
         "accountType": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "Standard_LRS"
         },
         "kind": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "StorageV2"
         },
         "accessTier": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "Hot"
         },
         "supportsHttpsTrafficOnly": {
-            "type": "bool"
+            "type": "bool",
+            "defaultValue": "true"
         },
         "largeFileSharesState": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "Disabled"
         }
     },
     "variables": {},

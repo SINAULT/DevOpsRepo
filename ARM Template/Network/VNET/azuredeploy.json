@@ -10,17 +10,9 @@
             "type": "string",
             "defaultValue": "WEUDSTVNTZZZF00"
         },
-        "resourceGroup": {
-            "type": "string",
-            "defaultValue": "WEUDSTRSGZZZF00"
-        },
         "addressSpaces": {
             "type": "array",
             "defaultValue":["192.168.1.0/24"]
-        },
-        "ipv6Enabled": {
-            "type": "bool",
-            "defaultValue": false
         },
         "subnetCount": {
             "type": "int",
@@ -33,6 +25,10 @@
         "subnet0_addressRange": {
             "type": "string",
             "defaultValue": "192.168.1.0/24"
+        },
+        "ipv6Enabled": {
+            "type": "bool",
+            "defaultValue": false
         },
         "ddosProtectionPlanEnabled": {
             "type": "bool",
@@ -59,14 +55,14 @@
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
-                        "192.168.1.0/24"
+                        "[parameters('addressSpaces')]"
                     ]
                 },
                 "subnets": [
                     {
-                        "name": "Default",
+                        "name": "[parameters('subnet0_name')]",
                         "properties": {
-                            "addressPrefix": "192.168.1.0/24"
+                            "addressPrefix": "[parameters('subnet0_addressRange')]"
                         }
                     }
                 ],

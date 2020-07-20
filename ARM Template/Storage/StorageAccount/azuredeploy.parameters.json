@@ -9,7 +9,7 @@
             "value": "weudststowvdf100"
         },
         "ADSyncOption":{
-            "value": "AADDS"
+            "value": ["AADDS"]
         },
         "ShareName":{
             "value": "wvd-userprofile"
