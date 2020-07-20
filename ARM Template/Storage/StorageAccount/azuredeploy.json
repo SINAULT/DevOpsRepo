@@ -40,7 +40,7 @@
         },
         "supportsHttpsTrafficOnly": {
             "type": "bool",
-            "defaultValue": "true"
+            "defaultValue": true
         },
         "largeFileSharesState": {
             "type": "string",
