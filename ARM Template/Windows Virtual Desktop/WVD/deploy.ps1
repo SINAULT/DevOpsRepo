@@ -22,6 +22,6 @@ New-AzResourceGroupDeployment -ResourceGroupName WEUDSTRSGZZZF00 `
     -existingTenantName $WVDTenant `
     -tenantAdminUpnOrApplicationId $AdminWVD `
     -tenantAdminPassword $AdminWVDPassword `
-    -TemplateUri "https://dev.azure.com/dylansinault/_git/Personal%20Awesome%20Project?path=%2FARM%20Template%2FWindows%20Virtual%20Desktop%2FWVD%2Ftemplate.json" `
-    -TemplateParameterUri "https://dev.azure.com/dylansinault/_git/Personal%20Awesome%20Project?path=%2FARM%20Template%2FWindows%20Virtual%20Desktop%2FWVD%2Fparameters.json"
+    -TemplateUri "https://raw.githubusercontent.com/SINAULT/DevOpsRepo/master/ARM%20Template/Windows%20Virtual%20Desktop/WVD/template.json" `
+    -TemplateParameterUri "https://raw.githubusercontent.com/SINAULT/DevOpsRepo/master/ARM%20Template/Windows%20Virtual%20Desktop/WVD/parameters.json"
 
