@@ -38,30 +38,34 @@
     "variables": {
         "networkSecurityGroupName": "WEUDSTNSGZZZF00",
         "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
-        "networkSecurityGroupRules": {
-                    "name": "SSH",
-                    "properties": {
-                        "priority": 300,
-                        "protocol": "TCP",
-                        "access": "Allow",
-                        "direction": "Inbound",
-                        "sourceAddressPrefix": "*",
-                        "sourcePortRange": "*",
-                        "destinationAddressPrefix": "*",
-                        "destinationPortRange": "22"
+        "networkSecurityGroupRules": [
+            {
+                "name": "SSH",
+                "properties": {
+                    "priority": 300,
+                    "protocol": "TCP",
+                    "access": "Allow",
+                    "direction": "Inbound",
+                    "sourceAddressPrefix": "*",
+                    "sourcePortRange": "*",
+                    "destinationAddressPrefix": "*",
+                    "destinationPortRange": "22"
                 }
-        },
+            }
+        ],
         "virtualNetworkName": "WEUDSTVNTZZZF00",
         "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
         "addressPrefixes": ["172.16.0.0/24"],
         "subnetName": "Default",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', variables('subnetName'))]",
-        "subnets": {
-                    "name": "Default",
-                    "properties": {
-                        "addressPrefix": "172.16.0.0/24"
-                    }
-                },
+        "subnets": [
+            {
+                "name": "Default",
+                "properties": {
+                    "addressPrefix": "172.16.0.0/24"
+                }
+            }
+        ],
         "location": "[resourceGroup().location]",
         "autoShutdownStatus": "Enabled",
         "autoShutdownNotificationStatus": "Enabled",
