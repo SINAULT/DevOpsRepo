@@ -36,8 +36,8 @@
         }
     },
     "variables": {
-        "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
         "networkSecurityGroupName": "WEUDSTNSGZZZF00",
+        "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
         "networkSecurityGroupRules": {
                     "name": "SSH",
                     "properties": {
@@ -51,11 +51,11 @@
                         "destinationPortRange": "22"
                 }
         },
-        "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
         "virtualNetworkName": "WEUDSTVNTZZZF00",
+        "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
         "addressPrefixes": ["172.16.0.0/24"],
-        "subnetRef": "[concat(variables('vnetId'), '/subnets/', variables('subnetName'))]",
         "subnetName": "Default",
+        "subnetRef": "[concat(variables('vnetId'), '/subnets/', variables('subnetName'))]",
         "subnets": {
                     "name": "Default",
                     "properties": {
