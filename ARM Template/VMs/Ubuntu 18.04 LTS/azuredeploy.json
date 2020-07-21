@@ -67,6 +67,7 @@
         "autoShutdownNotificationLocale": "en",
         "virtualMachineComputerName": "WEUDSTVMLZZZF00",
         "osDiskType": "StandardSSD_LRS",
+        "osDiskName": "WEUDSTMDKZZZF00",
         "publicIpAddressSku": "Basic",
         "publicIpAddressType": "Dynamic",
         "publicIpAddressName": "WEUDSTPIPZZZF00",
@@ -150,6 +151,7 @@
                 },
                 "storageProfile": {
                     "osDisk": {
+                        "name": "[variables('osDiskName')]",
                         "createOption": "fromImage",
                         "managedDisk": {
                             "storageAccountType": "[variables('osDiskType')]"
