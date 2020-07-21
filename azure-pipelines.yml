@@ -14,5 +14,3 @@ steps:
   inputs:
     templateType: 'custom'
     customTemplateLocation: 'https://raw.githubusercontent.com/SINAULT/DevOpsRepo/master/windows.json'
-    imageUri: 'WEUDSTIMGZZZF00'
-    imageId: 'WEUDSTIMGZZZF00'
