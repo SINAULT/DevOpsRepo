@@ -3,13 +3,11 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
 		"ADSyncOption": { 
-			"type": "array",
+			"type": "string",
             "defaultValue": "None",
-            "allowedValues":[
-                "None",
-                "AADDS",
-                "AD"
-            ]
+            "metadata": {
+                "description": "None, AADDS or AD"
+            }
 		},
 		"ShareSize": { 
 			"type": "int",
