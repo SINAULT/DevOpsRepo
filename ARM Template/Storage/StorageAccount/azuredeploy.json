@@ -4,6 +4,7 @@
     "parameters": {
 		"ADSyncOption": { 
 			"type": "array",
+            "defaultValue": "None",
             "allowedValues":[
                 "None",
                 "AADDS",
@@ -18,10 +19,6 @@
 			"type": "string",
             "defaultValue": "azure-share"
 		},
-        "location": {
-            "type": "string",
-            "defaultValue": "westeurope"
-        },
         "storageAccountName": {
             "type": "string",
             "defaultValue": "weudststozzzf00"
@@ -47,13 +44,15 @@
             "defaultValue": "Disabled"
         }
     },
-    "variables": {},
+    "variables": {
+        "location": "[resourceGroup().location]"
+    },
     "resources": [
         {
             "name": "[parameters('storageAccountName')]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "properties": {
                 "azureFilesIdentityBasedAuthentication":{
                     "directoryServiceOptions":"[parameters('ADSyncOption')]"
