@@ -7,13 +7,8 @@
             "defaultValue": "WEUDSTVMLZZZF00"
         },
         "virtualMachineSize": {
-            "type": "array",
-            "defaultValue": ["Standard_B2ms"],
-            "AllowedValues": [
-                "Standard_B2ms",
-                "Standard_B2s",
-                "Standard_B1ms"
-            ]
+            "type": "string",
+            "defaultValue": "Standard_B2ms"
         },
         "adminUsername": {
             "type": "string",
