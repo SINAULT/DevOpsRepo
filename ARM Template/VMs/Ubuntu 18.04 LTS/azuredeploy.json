@@ -8,7 +8,7 @@
         },
         "virtualMachineSize": {
             "type": "array",
-            "defaultValue": "Standard_B2ms",
+            "defaultValue": ["Standard_B2ms"],
             "AllowedValues": [
                 "Standard_B2ms",
                 "Standard_B2s",
