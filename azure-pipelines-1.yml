@@ -1,0 +1,25 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Lyon-IA-ouverte(dcbde5ac-b981-45f9-b8b6-f77efa07ab2a)'
+    subscriptionId: 'dcbde5ac-b981-45f9-b8b6-f77efa07ab2a'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'WEUDSTRSGZZZF00'
+    location: 'West Europe'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/SINAULT/DevOpsRepo/master/ARM%20Template/VMs/W2016%20Datacenter/azuredeploy.json'
+    csmParametersFileLink: 'https://raw.githubusercontent.com/SINAULT/DevOpsRepo/master/ARM%20Template/VMs/W2016%20Datacenter/azuredeploy.parameters.json'
+    overrideParameters: '-adminPassword @zureUser2020!!!'
+    deploymentMode: 'Incremental'
