@@ -2,8 +2,8 @@
 ---------------------------------------------------
 Be sure to have in each subfolder these 3 files:
 
-* template.json
-* parameters.json
+* azuredeploy.json
+* azuredeploy.parameters.json
 * deploy.ps1
 
 ##BEST PRACTICES!
