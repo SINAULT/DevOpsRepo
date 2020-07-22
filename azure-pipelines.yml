@@ -21,5 +21,6 @@ steps:
     templateLocation: 'URL of the file'
     csmFileLink: 'https://raw.githubusercontent.com/SINAULT/DevOpsRepo/master/ARM%20Template/VMs/Ubuntu%2018.04%20LTS/azuredeploy.json'
     csmParametersFileLink: 'https://raw.githubusercontent.com/SINAULT/DevOpsRepo/master/ARM%20Template/VMs/Ubuntu%2018.04%20LTS/azuredeploy.parameters.json'
+    overrideParameters: '-adminPassword @zureUser!!!'
     deploymentMode: 'Incremental'
 
