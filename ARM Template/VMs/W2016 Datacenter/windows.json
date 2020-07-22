@@ -1,0 +1,39 @@
+{
+    "builders": [{
+      "type": "azure-arm",
+  
+      "client_id": "0d234303-da71-48cd-9cf8-392f08148a04",
+      "client_secret": "e4491c11-213c-4e7a-be00-d109fabf698b",
+      "subscription_id": "dcbde5ac-b981-45f9-b8b6-f77efa07ab2a",
+      "tenant_id": "f43e2fea-8e52-469a-a796-56e4c4bcb1f5",
+  
+      "managed_image_resource_group_name": "WEUDSTRSGZZZF00",
+      "managed_image_name": "WEUDSTIMGZZZF00",
+  
+      "os_type": "Windows",
+      "image_publisher": "MicrosoftWindowsServer",
+      "image_offer": "WindowsServer",
+      "image_sku": "2016-Datacenter",
+  
+      "communicator": "winrm",
+      "winrm_use_ssl": true,
+      "winrm_insecure": true,
+      "winrm_timeout": "5m",
+      "winrm_username": "packer",
+  
+      "azure_tags": {
+          "OWNER": "dylan.sinault@exakis-nelite.com"
+      },
+  
+      "location": "westeurope",
+      "vm_size": "Standard_D2_v2"
+    }],
+    "provisioners": [{
+      "type": "powershell",
+      "inline": [
+        "Add-WindowsFeature Web-Server",
+        "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /quiet /quit",
+        "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select ImageState; if($imageState.ImageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState.ImageState; Start-Sleep -s 10  } else { break } }"
+      ]
+    }]
+  }
