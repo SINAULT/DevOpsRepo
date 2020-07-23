@@ -72,8 +72,8 @@
         "enableRBAC": true,
         "enablePrivateCluster": false,
         "enableOmsAgent": true,
-        "workspaceName": "WEUDSTLOGZZZF00",
-        "omsWorkspaceId": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.OperationalInsights/workspaces/WEUDSTLOGZZZF00",
+        "workspaceName": "WEUDSTLOGZZZF01",
+        "omsWorkspaceId": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.OperationalInsights/workspaces/WEUDSTLOGZZZF01",
         "omsSku": "standalone",
         "vnetSubnetID": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/AKS-NodePool",
         "dockerBridgeCidr": "172.17.0.1/16"
