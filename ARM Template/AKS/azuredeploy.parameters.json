@@ -5,6 +5,15 @@
         "resourceName": {
             "value": "WEUDSTAKSZZZF00"
         },
+        "servicePrincipalClientId": {
+            "value": null
+        },
+        "servicePrincipalClientSecret": {
+            "value": null
+        },
+        "principalId": {
+            "value": null
+        },
         "kubernetesVersion": {
             "value": "1.17.7"
         },
