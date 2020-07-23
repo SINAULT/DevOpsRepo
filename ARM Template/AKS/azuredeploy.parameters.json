@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourceName": {
+            "value": "WEUDSTAKSZZZF00"
+        },
+        "kubernetesVersion": {
+            "value": "1.17.7"
+        },
+        "networkPlugin": {
+            "value": "azure"
+        },
+        "enableHttpApplicationRouting": {
+            "value": false
+        },
+        "vmssNodePool": {
+            "value": true
+        },
+        "serviceCidr": {
+            "value": "192.168.1.128/25"
+        },
+        "dnsServiceIP": {
+            "value": "192.168.1.130"
+        },
+        "networkPolicy": {
+            "value": "azure"
+        }
+    }
+}
