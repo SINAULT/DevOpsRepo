@@ -68,7 +68,7 @@
         "location": "[resourceGroup().location]",
         "NodeResourceGroupName": "WEUDSTAKSZZZF00",
         "dnsPrefix": "WEUDSTDNSZZZF00",
-        "osDiskSizeGB": "0",
+        "osDiskSizeGB": 0,
         "enableRBAC": true,
         "enablePrivateCluster": "false",
         "enableOmsAgent": "true",
