@@ -21,12 +21,6 @@
                 "description": "The Service Principal Client Secret."
             }
         },
-        "principalId": {
-            "type": "string",
-            "metadata": {
-                "description": "The objectId of service principal."
-            }
-        },
         "kubernetesVersion": {
             "type": "string",
             "defaultValue": "1.17.7",
@@ -95,7 +89,8 @@
         "omsSku": "standalone",
         "vnetSubnetID": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/AKS-NodePool",
         "dockerBridgeCidr": "172.17.0.1/16",
-        "aadSessionKey": null
+        "aadSessionKey": "",
+        "principalId":"603fd2bb-009f-45f0-8783-9c2d9dfa811d"
 
     },
     "resources": [
@@ -241,7 +236,7 @@
                             "name": "WEUDSTAKSZZZF00/Microsoft.Authorization/94b68682-7e96-4bf6-a2ee-a6da9a5fe8dc",
                             "properties": {
                                 "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', '3913510d-42f4-4e42-8a64-420c390055eb')]",
-                                "principalId": "[parameters('principalId')]",
+                                "principalId": "[variables('principalId')]",
                                 "scope": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.ContainerService/managedClusters/WEUDSTAKSZZZF00"
                             }
                         }
@@ -295,7 +290,7 @@
                             "name": "WEUDSTVNTZZZF00/AKS-NodePool/Microsoft.Authorization/f036f29f-711c-42da-a920-85ccf4fe8af2",
                             "properties": {
                                 "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', '4d97b98b-1d4f-4787-a291-c67834d212e7')]",
-                                "principalId": "[parameters('principalId')]",
+                                "principalId": "[variables('principalId')]",
                                 "scope": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/AKS-NodePool"
                             }
                         }
