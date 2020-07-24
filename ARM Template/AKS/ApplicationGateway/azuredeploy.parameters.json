@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "aksClusterName": {
+            "value": "WEUDSTAKSZZZF00"
+        },
+        "aksServicePrincipalAppId": {
+            "value": null
+        },
+        "aksServicePrincipalClientSecret": {
+            "value": null
+        },
+        "kubernetesVersion": {
+            "value": "1.17.7"
+        },
+        "aksEnableRBAC": {
+            "value": true
+        },
+        "aksAgentCount": {
+            "value": 3
+        },
+        "aksAgentVMSize": {
+            "value": "Standard_B2s"
+        },
+        "aksServiceCIDR": {
+            "value": "192.168.1.128/25"
+        },
+        "aksDnsServiceIP": {
+            "value": "192.168.1.130"
+        },
+        "applicationGatewaySku": {
+            "value": "WAF_v2"
+        }
+    }
+}
