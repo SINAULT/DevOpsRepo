@@ -333,7 +333,8 @@
                             "properties": {
                                 "roleDefinitionId": "[variables('readerRole')]",
                                 "principalId": "[variables('aksServicePrincipalObjectId')]",
-                                "scope": "[resourceGroup().id]"
+                                "scope": "[resourceGroup().id]",
+                                "principalType": "ServicePrincipal"
                             }
                         }
                     ]
