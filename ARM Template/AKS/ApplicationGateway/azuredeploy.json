@@ -363,11 +363,6 @@
                         "vmSize": "[parameters('aksAgentVMSize')]",
                         "osType": "Linux",
                         "storageProfile": "ManagedDisks",
-                        "type": "VirtualMachineScaleSets",
-                        "enableAutoScaling": true,
-                        "minCount": "[variables('MinPod-agent-0')]",
-                        "maxCount": "[variables('MaxPod-agent-0')]",
-                        "mode": "System",
                         "vnetSubnetID": "[variables('kubernetesSubnetId')]",
                         "dnsPrefix": "agents"
                     }
