@@ -92,8 +92,6 @@
         "aksDnsPrefix": "WEUDSTDNSZZZF00",
         "aksAgentOsDiskSizeGB": 0,
         "networkPlugin": "azure",
-        "MinPod-agent-0": 1,
-        "MaxPod-agent-0": 10,
         "aksServicePrincipalObjectId": "603fd2bb-009f-45f0-8783-9c2d9dfa811d",
         "vnetId": "[resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'))]",
         "kubernetesSubnetId": "[concat(variables('vnetID'),'/subnets/', variables('kubernetesSubnetName'))]",
