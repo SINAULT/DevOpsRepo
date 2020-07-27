@@ -10,7 +10,7 @@
             }
         },
         "aksServicePrincipalAppId": {
-            "type": "string",
+            "type": "securestring",
             "metadata": {
                 "description": "appId of the service principal. Used by AKS to manage AKS related resources on Azure like vms, subnets."
             }
