@@ -91,6 +91,8 @@
         "nodeResourceGroup": "WEUDSTRSGAKSF00",
         "aksDnsPrefix": "WEUDSTDNSZZZF00",
         "aksAgentOsDiskSizeGB": 0,
+        "Min-AgentNode-0": 1,
+        "Max-AgentNode-0": 4,
         "networkPlugin": "azure",
         "aksServicePrincipalObjectId": "603fd2bb-009f-45f0-8783-9c2d9dfa811d",
         "vnetId": "[resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'))]",
@@ -357,9 +359,14 @@
                         "name": "agentpool",
                         "osDiskSizeGB": "[variables('aksAgentOsDiskSizeGB')]",
                         "count": "[parameters('aksAgentCount')]",
+                        "enableAutoScaling": true,
+                        "minCount": "[variables('Min-AgentNode-0')]",
+                        "maxCount": "[variables('Max-AgentNode-0')]",
                         "vmSize": "[parameters('aksAgentVMSize')]",
                         "osType": "Linux",
                         "storageProfile": "ManagedDisks",
+                        "type": "VirtualMachineScaleSets",
+                        "mode": "System",
                         "vnetSubnetID": "[variables('kubernetesSubnetId')]",
                         "dnsPrefix": "agents"
                     }
