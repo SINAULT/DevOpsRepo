@@ -320,7 +320,7 @@
                             "name": "[concat(variables('applicationGatewayName'), '/Microsoft.Authorization/', guid(resourceGroup().id, 'identityappgwaccess'))]",
                             "properties": {
                                 "roleDefinitionId": "[variables('contributorRole')]",
-                                "principalId": "[reference(variables('identityId'), '2015-08-31-PREVIEW').principalId]",
+                                "principalId": "[variables('aksServicePrincipalObjectId')]",
                                 "scope": "[variables('applicationGatewayId')]"
                             }
                         },
@@ -330,7 +330,7 @@
                             "name": "[guid(resourceGroup().id, 'identityrgaccess')]",
                             "properties": {
                                 "roleDefinitionId": "[variables('readerRole')]",
-                                "principalId": "[reference(variables('identityId'), '2015-08-31-PREVIEW').principalId]",
+                                "principalId": "[variables('aksServicePrincipalObjectId')]",
                                 "scope": "[resourceGroup().id]"
                             }
                         }
