@@ -52,14 +52,14 @@
             }
         },
         "aksServiceCIDR": {
-            "defaultValue": "192.168.1.128/25",
+            "defaultValue": "192.168.100.0/24",
             "type": "string",
             "metadata": {
                 "description": "A CIDR notation IP range from which to assign service cluster IPs."
             }
         },
         "aksDnsServiceIP": {
-            "defaultValue": "192.168.1.130",
+            "defaultValue": "192.168.100.100",
             "type": "string",
             "metadata": {
                 "description": "Containers DNS server IP address."
