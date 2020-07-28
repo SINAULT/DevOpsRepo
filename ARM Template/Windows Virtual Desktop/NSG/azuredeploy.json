@@ -2,8 +2,9 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "Prefix":{
-            "type":"string"
+        "NSGCount": {
+            "type": "int",
+            "defaultValue": 3
         },
         "networkSecurityGroupName": {
             "type": "string",
@@ -22,15 +23,19 @@
         {
             "apiVersion": "2019-02-01",
             "type": "Microsoft.Network/networkSecurityGroups",
-            "name": "[concat(parameters('networkSecurityGroupName'),parameters('Prefix'))]",
+            "name": "[concat(parameters('networkSecurityGroupName'),copyIndex(1))]",
             "location": "[parameters('location')]",
+            "copy": {
+                "name": "NSGCopy",
+                "count": "[parameters('NSGCount')]"
+            },
             "tags": {}
         }
     ],
     "outputs":{
         "NetworkSecurityGroup":{
             "type": "string",
-            "value": "[concat(parameters('networkSecurityGroupName'),parameters('Prefix'))]"
+            "value": "[concat(parameters('networkSecurityGroupName'),copyIndex(1))]"
         }
     }
 }
