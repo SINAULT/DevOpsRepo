@@ -1,0 +1,125 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualNetworkName": {
+            "type": "string"
+        },
+        "addressSpaces": {
+            "type": "array"
+        },
+        "Dns_server": {
+            "type": "array"
+        },
+        "ipv6Enabled": {
+            "type": "bool"
+        },
+        "subnetCount": {
+            "type": "int"
+        },
+        "subnet0_name": {
+            "type": "string"
+        },
+        "subnet0_addressRange": {
+            "type": "string"
+        },
+        "subnet1_name": {
+            "type": "string"
+        },
+        "subnet1_addressRange": {
+            "type": "string"
+        },
+        "networkSecurityGroupName1": {
+            "type": "string"
+        },
+        "subnet2_name": {
+            "type": "string"
+        },
+        "subnet2_addressRange": {
+            "type": "string"
+        },
+        "networkSecurityGroupName2": {
+            "type": "string"
+        },
+        "subnet3_name": {
+            "type": "string"
+        },
+        "subnet3_addressRange": {
+            "type": "string"
+        },
+        "networkSecurityGroupName3": {
+            "type": "string"
+        },
+        "ddosProtectionPlanEnabled": {
+            "type": "bool"
+        },
+        "firewallEnabled": {
+            "type": "bool"
+        },
+        "bastionEnabled": {
+            "type": "bool"
+        }
+    },
+    "variables": {
+        "location": "[resourceGroup().location]",
+        "NetworkGroup_Id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/networkSecurityGroups/"
+    },
+    "resources": [
+        {
+            "name": "[parameters('virtualNetworkName')]",
+            "type": "Microsoft.Network/VirtualNetworks",
+            "apiVersion": "2019-09-01",
+            "location": "[variables('location')]",
+            "dependsOn": [],
+            "tags": {},
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[parameters('addressSpaces')]"
+                    ]
+                },
+                "dhcpOptions": {
+                    "dnsServers": [
+                        "[parameters('Dns_server')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[parameters('subnet0_name')]",
+                        "properties": {
+                            "addressPrefix": "[parameters('subnet0_addressRange')]"
+                        }
+                    },
+                    {
+                        "name": "[parameters('subnet1_name')]",
+                        "properties": {
+                            "addressPrefix": "[parameters('subnet1_addressRange')]",
+                            "networkSecurityGroup": {
+                                "id": "[concat(variables('NetworkGroup_Id'),parameters('networkSecurityGroupName1'))]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "[parameters('subnet2_name')]",
+                        "properties": {
+                            "addressPrefix": "[parameters('subnet2_addressRange')]",
+                            "networkSecurityGroup": {
+                                "id": "[concat(variables('NetworkGroup_Id'),parameters('networkSecurityGroupName2'))]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "[parameters('subnet3_name')]",
+                        "properties": {
+                            "addressPrefix": "[parameters('subnet3_addressRange')]",
+                            "networkSecurityGroup": {
+                                "id": "[concat(variables('NetworkGroup_Id'),parameters('networkSecurityGroupName3'))]"
+                            }
+                        }
+                    }
+                ],
+                "enableDdosProtection": "[parameters('ddosProtectionPlanEnabled')]"
+            }
+        }
+    ]
+}

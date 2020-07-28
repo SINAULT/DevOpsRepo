@@ -1,0 +1,68 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualNetworkName": {
+            "value": "WEUDSTVNTZZZF00"
+        },
+        "addressSpaces": {
+            "value": [
+                "192.168.1.0/24"
+            ]
+        },
+        "Dns_server": {
+            "value": [
+                "192.168.1.4",
+                "192.168.1.5"
+            ]
+        },
+        "ipv6Enabled": {
+            "value": false
+        },
+        "subnetCount": {
+            "value": 4
+        },
+        "subnet0_name": {
+            "value": "DomainServices"
+        },
+        "subnet0_addressRange": {
+            "value": "192.168.1.0/28"
+        },
+        "subnet1_name": {
+            "value": "DomainAdministration"
+        },
+        "subnet1_addressRange": {
+            "value": "192.168.1.16/29"
+        },
+        "networkSecurityGroupName1": {
+            "value": "WEUDSTNSGZZZF01"
+        },
+        "subnet2_name": {
+            "value": "Storage"
+        },
+        "subnet2_addressRange": {
+            "value": "192.168.1.24/29"
+        },
+        "networkSecurityGroupName2": {
+            "value": "WEUDSTNSGZZZF02"
+        },
+        "subnet3_name": {
+            "value": "WVD"
+        },
+        "subnet3_addressRange": {
+            "value": "192.168.1.32/27"
+        },
+        "networkSecurityGroupName3": {
+            "value": "WEUDSTNSGZZZF03"
+        },
+        "ddosProtectionPlanEnabled": {
+            "value": false
+        },
+        "firewallEnabled": {
+            "value": false
+        },
+        "bastionEnabled": {
+            "value": false
+        }
+    }
+}
