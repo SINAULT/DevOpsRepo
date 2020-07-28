@@ -1,0 +1,57 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters":{
+        "Prefix": {
+            "type": "string"
+        },
+        "nsgName": {
+            "type": "string",
+            "defaultValue": "WEUDSTNSGZZZF"
+        },
+        "location": {
+            "type": "string",
+            "defaultvalue": "westeurope"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-05-01",
+            "name": "[concat(parameters('nsgName'),parameters('Prefix'))]",
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "resources": [
+                        {
+                        "type": "Microsoft.Network/NetworkSecurityGroups",
+                        "apiVersion": "2019-11-01",
+                        "name": "[concat(parameters('nsgName'),parameters('Prefix'))]",
+                        "location": "[parameters('location')]",
+                        "properties": {
+                            "securityRules": [
+                                {
+                                    "name": "AllowRDP",
+                                    "properties": {
+                                        "access": "Allow",
+                                        "priority": 101,
+                                        "direction": "Inbound",
+                                        "protocol": "Tcp",
+                                        "sourceAddressPrefix": "Internet",
+                                        "sourcePortRange": "*",
+                                        "destinationAddressPrefix": "VirtualNetwork",
+                                        "destinationPortRange": "3389"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
+
