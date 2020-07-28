@@ -32,10 +32,13 @@
             "tags": {}
         }
     ],
-    "outputs":{
-        "NetworkSecurityGroup":{
-            "type": "string",
-            "value": "[concat(parameters('networkSecurityGroupName'),copyIndex(1))]"
+    "outputs": {
+        "NetworkSecurityGroup": {
+            "type": "array",
+            "copy": {
+                "count":"[parameters('NSGCount')]",
+                "input": "[concat(parameters('networkSecurityGroupName'),copyIndex(1))]"
+            }
         }
     }
 }
