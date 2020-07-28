@@ -74,14 +74,12 @@
             "tags": {},
             "properties": {
                 "addressSpace": {
-                    "addressPrefixes": [
+                    "addressPrefixes": 
                         "[parameters('addressSpaces')]"
-                    ]
                 },
                 "dhcpOptions": {
-                    "dnsServers": [
+                    "dnsServers": 
                         "[parameters('Dns_server')]"
-                    ]
                 },
                 "subnets": [
                     {
