@@ -218,8 +218,8 @@
             "apiVersion": "2019-06-01",
             "name": "[concat(parameters('storageAccountName'), '/default/', parameters('ShareName'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts/fileServices', parameters('storageAccountName'), 'default')]",
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+                "[resourceId('Microsoft.Storage/storageAccounts/fileServices/', parameters('storageAccountName'), '/default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]"
             ],
             "properties": {
                 "shareQuota": "[parameters('ShareSize')]"
@@ -233,7 +233,7 @@
             "resourceGroup": "[variables('ResourceGroup')]",
             "dependsOn": [
                 "[concat('microsoft.storage/storageaccounts/', parameters('storageAccountName'))]",
-                "[concat('Microsoft.Storage/storageAccounts/fileServices', parameters('storageAccountName'), 'default')]",
+                "[concat('Microsoft.Storage/storageAccounts/fileServices/', parameters('storageAccountName'), '/default')]",
                 "[concat('Microsoft.Storage/storageAccounts/fileServices/shares/', parameters('ShareName'))]"
             ],
             "resources": [],
