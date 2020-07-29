@@ -5,6 +5,9 @@
         "storageAccountName": {
             "type": "string"
         },
+        "PrivateEndpointName": {
+            "type": "string"
+        },
         "accountType": {
             "type": "string"
         },
@@ -33,7 +36,8 @@
     "variables": {
         "subscriptionId": "dcbde5ac-b981-45f9-b8b6-f77efa07ab2a",
         "ResourceGroup": "WEUDSTRSGZZZF00",
-        "location": "[resourceGroup().location]"
+        "location": "[resourceGroup().location]",
+        "privateEndpointConnectionName": "[concat(parameters('PrivateEndpointName'),'_Connection')]"
     },
     "resources": [
         {
@@ -190,7 +194,7 @@
         {
             "apiVersion": "2017-05-10",
             "type": "Microsoft.Resources/deployments",
-            "name": "WEUDSTENPZZZF00_Update",
+            "name": "[parameters('PrivateEndpointName')]",
             "subscriptionId": "[variables('subscriptionId')]",
             "resourceGroup": "[variables('ResourceGroup')]",
             "dependsOn": [
@@ -201,16 +205,16 @@
                 "mode": "Incremental",
                 "parameters": {
                     "privateEndpointName": {
-                        "value": "WEUDSTENPZZZF00"
+                        "value": "[parameters('PrivateEndpointName')]"
                     },
                     "privateEndpointConnectionId": {
-                        "value": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/privateEndpoints/privateLinkServiceConnections/WEUDSTENPZZZF00_Connection"
+                        "value": "[concat('/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/privateEndpoints/privateLinkServiceConnections/',variables('privateEndpointConnectionName'))]"
                     },
                     "privateEndpointConnectionName": {
-                        "value": "WEUDSTENPZZZF00_Connection"
+                        "value": "[variables('privateEndpointConnectionName')]"
                     },
                     "privateEndpointId": {
-                        "value": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/privateEndpoints/WEUDSTENPZZZF00"
+                        "value": "[concat('/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/privateEndpoints/',variables('privateEndpointConnectionName'))]"
                     },
                     "privateEndpointApiVersion": {
                         "value": "2020-03-01"
