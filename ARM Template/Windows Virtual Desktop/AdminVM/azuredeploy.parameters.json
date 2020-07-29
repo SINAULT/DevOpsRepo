@@ -2,20 +2,17 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "Prefix": {
-            "value": null
-        },
-        "networkInterfaceName": {
-            "value": "WEUDSTNICZZZF"
-        },
-        "publicIpAddressName": {
-            "value": "WEUDSTPIPZZZF"
-        },
-        "OSDiskName": {
-            "value" : "WEUDSTMDKZZZF"
-        },
-      "dnsLabelPrefix": {
-        "value": "WEUDSTVMWZZZF"
+      "networkInterfaceName": {
+            "value": "WEUDSTNICZZZF00"
+      },
+      "publicIpAddressName": {
+            "value": "WEUDSTPIPZZZF00"
+      },
+      "OSDiskName": {
+            "value" : "WEUDSTMDKZZZF00"
+      },
+      "VirtualMachineName": {
+        "value": "WEUDSTVMWZZZF00"
       },
       "existingVNETName": {
         "value": "WEUDSTVNTZZZF00"
