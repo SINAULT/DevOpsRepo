@@ -14,6 +14,14 @@
         "kind": {
             "type": "string"
         },
+        "azureFilesIdentityBasedAuthentication": {
+            "type": "string",
+            "allowedValues": [
+                "None",
+                "AD",
+                "AADDS"
+            ]
+        },
         "accessTier": {
             "type": "string"
         },
@@ -172,6 +180,9 @@
             "apiVersion": "2019-06-01",
             "location": "[variables('location')]",
             "properties": {
+                "azureFilesIdentityBasedAuthentication": {
+                    "directoryServiceOptions": "[parameters('azureFilesIdentityBasedAuthentication')]"
+                },
                 "accessTier": "[parameters('accessTier')]",
                 "minimumTlsVersion": "[parameters('minimumTlsVersion')]",
                 "supportsHttpsTrafficOnly": "[parameters('supportsHttpsTrafficOnly')]",

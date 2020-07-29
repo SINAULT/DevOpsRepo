@@ -14,6 +14,9 @@
         "kind": {
             "value": "StorageV2"
         },
+        "azureFilesIdentityBasedAuthentication": {
+            "value": "AADDS"
+        },
         "accessTier": {
             "value": "Hot"
         },
