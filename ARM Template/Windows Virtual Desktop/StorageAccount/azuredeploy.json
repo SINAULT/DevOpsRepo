@@ -5,14 +5,19 @@
         "storageAccountName": {
             "type": "string"
         },
+        "ADSyncOption": {
+            "type": "string",
+            "allowedValues": [
+                "None",
+                "AD",
+                "AADDS"
+            ]
+        },
         "ShareName": {
             "type": "string"
         },
         "ShareSize": {
             "type": "int"
-        },
-        "PrivateEndpointName": {
-            "type": "string"
         },
         "accountType": {
             "type": "string"
@@ -42,8 +47,7 @@
     "variables": {
         "subscriptionId": "dcbde5ac-b981-45f9-b8b6-f77efa07ab2a",
         "ResourceGroup": "WEUDSTRSGZZZF00",
-        "location": "[resourceGroup().location]",
-        "privateEndpointConnectionName": "[concat(parameters('PrivateEndpointName'),'_Connection')]"
+        "location": "[resourceGroup().location]"
     },
     "resources": [
         {
@@ -178,6 +182,9 @@
             "apiVersion": "2019-06-01",
             "location": "[variables('location')]",
             "properties": {
+                "azureFilesIdentityBasedAuthentication":{
+                    "directoryServiceOptions":"[parameters('ADSyncOption')]"
+                },
                 "accessTier": "[parameters('accessTier')]",
                 "minimumTlsVersion": "[parameters('minimumTlsVersion')]",
                 "supportsHttpsTrafficOnly": "[parameters('supportsHttpsTrafficOnly')]",
@@ -224,58 +231,12 @@
             "properties": {
                 "shareQuota": "[parameters('ShareSize')]"
             }
-        },
-        {
-            "apiVersion": "2017-05-10",
-            "type": "Microsoft.Resources/deployments",
-            "name": "[parameters('PrivateEndpointName')]",
-            "subscriptionId": "[variables('subscriptionId')]",
-            "resourceGroup": "[variables('ResourceGroup')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts/fileServices', parameters('storageAccountName'), 'default')]",
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
-            ],
-            "resources": [],
-            "properties": {
-                "mode": "Incremental",
-                "parameters": {
-                    "privateEndpointName": {
-                        "value": "[parameters('PrivateEndpointName')]"
-                    },
-                    "privateEndpointConnectionId": {
-                        "value": "[concat('/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/privateEndpoints/privateLinkServiceConnections/',variables('privateEndpointConnectionName'))]"
-                    },
-                    "privateEndpointConnectionName": {
-                        "value": "[variables('privateEndpointConnectionName')]"
-                    },
-                    "privateEndpointId": {
-                        "value": "[concat('/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/privateEndpoints/',parameters('PrivateEndpointName'))]"
-                    },
-                    "privateEndpointApiVersion": {
-                        "value": "2020-03-01"
-                    },
-                    "privateLinkServiceId": {
-                        "value": "[concat('/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourcegroups/WEUDSTRSGZZZF00/providers/Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]"
-                    },
-                    "groupId": {
-                        "value": "file"
-                    },
-                    "subnetId": {
-                        "value": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/Storage"
-                    },
-                    "location": {
-                        "value": "[variables('location')]"
-                    },
-                    "tags": {
-                        "value": {}
-                    }
-                },
-                "templatelink": {
-                    "contentVersion": "1.0.0.0",
-                    "uri": "https://storage.hosting.portal.azure.net/storage/Content/4.13.393.42/DeploymentTemplates/PrivateEndpointForStorage.json"
-                }
-            }
         }
     ],
-    "outputs": {}
+    "outputs": {
+        "SharePath":{
+            "type": "string",
+            "value":"[concat('\\\\',parameters('storageAccountName'),'.file.core.windows.net','\\',parameters('ShareName'))]"
+        }
+    }
 }

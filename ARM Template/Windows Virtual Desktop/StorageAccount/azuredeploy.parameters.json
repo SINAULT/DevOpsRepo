@@ -5,14 +5,14 @@
         "storageAccountName": {
             "value": "weudststozzzf100"
         },
+        "ADSyncOption": {
+            "value": "AADDS"
+        },
         "ShareName": {
             "value": "user-profiles"
         },
         "ShareSize": {
             "value": 100
-        },
-        "PrivateEndpointName": {
-            "value": "WEUDSTENPZZZF00"
         },
         "accountType": {
             "value": "Standard_LRS"

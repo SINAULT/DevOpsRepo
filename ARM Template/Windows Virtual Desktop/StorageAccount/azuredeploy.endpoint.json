@@ -1,0 +1,69 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "PrivateEndpointName": {
+            "type": "string"
+        },
+        "storageAccountName": {
+            "type": "string"
+        }
+    },
+    "variables": {
+        "subscriptionId": "dcbde5ac-b981-45f9-b8b6-f77efa07ab2a",
+        "ResourceGroup": "WEUDSTRSGZZZF00",
+        "location": "[resourceGroup().location]",
+        "privateEndpointConnectionName": "[concat(parameters('PrivateEndpointName'),'_Connection')]"
+    },
+    "resources": [
+        {
+            "apiVersion": "2017-05-10",
+            "type": "Microsoft.Resources/deployments",
+            "name": "[parameters('PrivateEndpointName')]",
+            "subscriptionId": "[variables('subscriptionId')]",
+            "resourceGroup": "[variables('ResourceGroup')]",
+            "dependsOn": [],
+            "resources": [],
+            "properties": {
+                "mode": "Incremental",
+                "parameters": {
+                    "privateEndpointName": {
+                        "value": "[parameters('PrivateEndpointName')]"
+                    },
+                    "privateEndpointConnectionId": {
+                        "value": "[concat('/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/privateEndpoints/privateLinkServiceConnections/',variables('privateEndpointConnectionName'))]"
+                    },
+                    "privateEndpointConnectionName": {
+                        "value": "[variables('privateEndpointConnectionName')]"
+                    },
+                    "privateEndpointId": {
+                        "value": "[concat('/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/privateEndpoints/',parameters('PrivateEndpointName'))]"
+                    },
+                    "privateEndpointApiVersion": {
+                        "value": "2020-03-01"
+                    },
+                    "privateLinkServiceId": {
+                        "value": "[concat('/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourcegroups/WEUDSTRSGZZZF00/providers/Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]"
+                    },
+                    "groupId": {
+                        "value": "file"
+                    },
+                    "subnetId": {
+                        "value": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/Storage"
+                    },
+                    "location": {
+                        "value": "[variables('location')]"
+                    },
+                    "tags": {
+                        "value": {}
+                    }
+                },
+                "templatelink": {
+                    "contentVersion": "1.0.0.0",
+                    "uri": "https://storage.hosting.portal.azure.net/storage/Content/4.13.393.42/DeploymentTemplates/PrivateEndpointForStorage.json"
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}
