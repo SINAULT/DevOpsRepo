@@ -5,9 +5,6 @@
         "storageAccountName": {
             "value": "weudststozzzf100"
         },
-        "ADSyncOption": {
-            "value": "AADDS"
-        },
         "ShareName": {
             "value": "user-profiles"
         },

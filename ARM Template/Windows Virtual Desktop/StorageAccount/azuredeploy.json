@@ -5,14 +5,6 @@
         "storageAccountName": {
             "type": "string"
         },
-        "ADSyncOption": {
-            "type": "string",
-            "allowedValues": [
-                "None",
-                "AD",
-                "AADDS"
-            ]
-        },
         "ShareName": {
             "type": "string"
         },
@@ -182,9 +174,6 @@
             "apiVersion": "2019-06-01",
             "location": "[variables('location')]",
             "properties": {
-                "azureFilesIdentityBasedAuthentication":{
-                    "directoryServiceOptions":"[parameters('ADSyncOption')]"
-                },
                 "accessTier": "[parameters('accessTier')]",
                 "minimumTlsVersion": "[parameters('minimumTlsVersion')]",
                 "supportsHttpsTrafficOnly": "[parameters('supportsHttpsTrafficOnly')]",
