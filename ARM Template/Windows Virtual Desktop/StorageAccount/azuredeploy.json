@@ -1,0 +1,242 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountName": {
+            "type": "string"
+        },
+        "accountType": {
+            "type": "string"
+        },
+        "kind": {
+            "type": "string"
+        },
+        "accessTier": {
+            "type": "string"
+        },
+        "minimumTlsVersion": {
+            "type": "string"
+        },
+        "supportsHttpsTrafficOnly": {
+            "type": "bool"
+        },
+        "allowBlobPublicAccess": {
+            "type": "bool"
+        },
+        "networkAclsBypass": {
+            "type": "string"
+        },
+        "networkAclsDefaultAction": {
+            "type": "string"
+        }
+    },
+    "variables": {
+        "subscriptionId": "dcbde5ac-b981-45f9-b8b6-f77efa07ab2a",
+        "ResourceGroup": "WEUDSTRSGZZZF00",
+        "location": "[resourceGroup().location]"
+    },
+    "resources": [
+        {
+            "apiVersion": "2017-05-10",
+            "type": "Microsoft.Resources/deployments",
+            "name": "WEUDSTVNTZZZF00_Update",
+            "subscriptionId": "[variables('subscriptionId')]",
+            "resourceGroup": "[variables('ResourceGroup')]",
+            "dependsOn": [],
+            "resources": [],
+            "properties": {
+                "mode": "Incremental",
+                "parameters": {},
+                "template": {
+                    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {},
+                    "variables": {},
+                    "resources": [
+                        {
+                            "apiVersion": "2019-09-01",
+                            "name": "WEUDSTVNTZZZF00",
+                            "type": "Microsoft.Network/virtualNetworks",
+                            "location": "[variables('location')]",
+                            "properties": {
+                                "provisioningState": "Succeeded",
+                                "resourceGuid": "2fd1959e-a685-4bd5-bcd2-4dd92e0fef29",
+                                "addressSpace": {
+                                    "addressPrefixes": [
+                                        "192.168.1.0/24"
+                                    ]
+                                },
+                                "dhcpOptions": {
+                                    "dnsServers": [
+                                        "192.168.1.4",
+                                        "192.168.1.5"
+                                    ]
+                                },
+                                "subnets": [
+                                    {
+                                        "name": "DomainAdministration",
+                                        "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/DomainAdministration",
+                                        "etag": "W/\"ca08f931-ba2b-40ae-a7cb-cdaf59308c03\"",
+                                        "properties": {
+                                            "provisioningState": "Succeeded",
+                                            "addressPrefix": "192.168.1.16/29",
+                                            "networkSecurityGroup": {
+                                                "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/networkSecurityGroups/WEUDSTNSGZZZF01"
+                                            },
+                                            "ipConfigurations": [
+                                                {
+                                                    "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/networkInterfaces/WEUDSTNICZZZF00/ipConfigurations/ipconfig"
+                                                }
+                                            ],
+                                            "delegations": [],
+                                            "privateEndpointNetworkPolicies": "Enabled",
+                                            "privateLinkServiceNetworkPolicies": "Enabled"
+                                        },
+                                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                                    },
+                                    {
+                                        "name": "Storage",
+                                        "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/Storage",
+                                        "etag": "W/\"ca08f931-ba2b-40ae-a7cb-cdaf59308c03\"",
+                                        "properties": {
+                                            "provisioningState": "Succeeded",
+                                            "addressPrefix": "192.168.1.24/29",
+                                            "networkSecurityGroup": {
+                                                "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/networkSecurityGroups/WEUDSTNSGZZZF02"
+                                            },
+                                            "delegations": [],
+                                            "privateEndpointNetworkPolicies": "Disabled",
+                                            "privateLinkServiceNetworkPolicies": "Enabled"
+                                        },
+                                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                                    },
+                                    {
+                                        "name": "WVD",
+                                        "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/WVD",
+                                        "etag": "W/\"ca08f931-ba2b-40ae-a7cb-cdaf59308c03\"",
+                                        "properties": {
+                                            "provisioningState": "Succeeded",
+                                            "addressPrefix": "192.168.1.32/27",
+                                            "networkSecurityGroup": {
+                                                "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/networkSecurityGroups/WEUDSTNSGZZZF03"
+                                            },
+                                            "delegations": [],
+                                            "privateEndpointNetworkPolicies": "Enabled",
+                                            "privateLinkServiceNetworkPolicies": "Enabled"
+                                        },
+                                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                                    },
+                                    {
+                                        "name": "DomainServices",
+                                        "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/DomainServices",
+                                        "etag": "W/\"ca08f931-ba2b-40ae-a7cb-cdaf59308c03\"",
+                                        "properties": {
+                                            "provisioningState": "Succeeded",
+                                            "addressPrefix": "192.168.1.0/28",
+                                            "networkSecurityGroup": {
+                                                "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/networkSecurityGroups/WEUDSTNSGZZZF00"
+                                            },
+                                            "ipConfigurations": [
+                                                {
+                                                    "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/networkInterfaces/aadds-87a51efc680843e99306f4ccc9f35415-nic/ipConfigurations/GK5DI9KU45X8U1EIpcfg"
+                                                },
+                                                {
+                                                    "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/networkInterfaces/aadds-75c14228ae91456ebcb0ff9c9836e2d4-nic/ipConfigurations/GCDXM5PFODVIDVGIpcfg"
+                                                }
+                                            ],
+                                            "delegations": [],
+                                            "privateEndpointNetworkPolicies": "Enabled",
+                                            "privateLinkServiceNetworkPolicies": "Enabled"
+                                        },
+                                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                                    }
+                                ],
+                                "virtualNetworkPeerings": [],
+                                "enableDdosProtection": false,
+                                "enableVmProtection": false
+                            },
+                            "tags": {}
+                        }
+                    ],
+                    "outputs": {}
+                }
+            }
+        },
+        {
+            "name": "[parameters('storageAccountName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2019-06-01",
+            "location": "[variables('location')]",
+            "properties": {
+                "accessTier": "[parameters('accessTier')]",
+                "minimumTlsVersion": "[parameters('minimumTlsVersion')]",
+                "supportsHttpsTrafficOnly": "[parameters('supportsHttpsTrafficOnly')]",
+                "allowBlobPublicAccess": "[parameters('allowBlobPublicAccess')]",
+                "networkAcls": {
+                    "bypass": "[parameters('networkAclsBypass')]",
+                    "defaultAction": "[parameters('networkAclsDefaultAction')]",
+                    "ipRules": []
+                }
+            },
+            "dependsOn": [
+                "Microsoft.Resources/deployments/WEUDSTVNTZZZF00_Update"
+            ],
+            "sku": {
+                "name": "[parameters('accountType')]"
+            },
+            "kind": "[parameters('kind')]",
+            "tags": {}
+        },
+        {
+            "apiVersion": "2017-05-10",
+            "type": "Microsoft.Resources/deployments",
+            "name": "WEUDSTENPZZZF00_71018fab-e637-4250-ad04-7076b07ac02c",
+            "subscriptionId": "[variables('subscriptionId')]",
+            "resourceGroup": "[variables('ResourceGroup')]",
+            "dependsOn": [
+                "microsoft.storage/storageaccounts/weudststozzzf00"
+            ],
+            "resources": [],
+            "properties": {
+                "mode": "Incremental",
+                "parameters": {
+                    "privateEndpointName": {
+                        "value": "WEUDSTENPZZZF00"
+                    },
+                    "privateEndpointConnectionId": {
+                        "value": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/privateEndpoints/privateLinkServiceConnections/WEUDSTENPZZZF00_Connection"
+                    },
+                    "privateEndpointConnectionName": {
+                        "value": "WEUDSTENPZZZF00_Connection"
+                    },
+                    "privateEndpointId": {
+                        "value": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/privateEndpoints/WEUDSTENPZZZF00"
+                    },
+                    "privateEndpointApiVersion": {
+                        "value": "2020-03-01"
+                    },
+                    "privateLinkServiceId": {
+                        "value": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourcegroups/WEUDSTRSGZZZF00/providers/Microsoft.Storage/storageAccounts/weudststozzzf00"
+                    },
+                    "groupId": {
+                        "value": "file"
+                    },
+                    "subnetId": {
+                        "value": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/Storage"
+                    },
+                    "location": {
+                        "value": "[variables('location')]"
+                    },
+                    "tags": {
+                        "value": {}
+                    }
+                },
+                "templatelink": {
+                    "contentVersion": "1.0.0.0",
+                    "uri": "https://storage.hosting.portal.azure.net/storage/Content/4.13.393.42/DeploymentTemplates/PrivateEndpointForStorage.json"
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}
