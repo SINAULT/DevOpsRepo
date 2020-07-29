@@ -5,6 +5,12 @@
         "storageAccountName": {
             "type": "string"
         },
+        "ShareName": {
+            "type": "string"
+        },
+        "ShareSize": {
+            "type": "int"
+        },
         "PrivateEndpointName": {
             "type": "string"
         },
@@ -192,13 +198,43 @@
             "tags": {}
         },
         {
+            "type": "Microsoft.Storage/storageAccounts/fileServices",
+            "apiVersion": "2019-06-01",
+            "name": "[concat(parameters('storageAccountName'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+            ],
+            "sku": {
+                "name": "Standard_LRS"
+            },
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+            "apiVersion": "2019-06-01",
+            "name": "[concat(parameters('storageAccountName'), '/default/', parameters('ShareName'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/fileServices', parameters('storageAccountName'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+            ],
+            "properties": {
+                "shareQuota": "[parameters('ShareSize')]"
+            }
+        },
+        {
             "apiVersion": "2017-05-10",
             "type": "Microsoft.Resources/deployments",
             "name": "[parameters('PrivateEndpointName')]",
             "subscriptionId": "[variables('subscriptionId')]",
             "resourceGroup": "[variables('ResourceGroup')]",
             "dependsOn": [
-                "[concat('microsoft.storage/storageaccounts/', parameters('storageAccountName'))]"
+                "[concat('microsoft.storage/storageaccounts/', parameters('storageAccountName'))]",
+                "[concat('Microsoft.Storage/storageAccounts/fileServices', parameters('storageAccountName'), 'default')]",
+                "[concat('Microsoft.Storage/storageAccounts/fileServices/shares', parameters('ShareName'))]"
             ],
             "resources": [],
             "properties": {

@@ -5,6 +5,12 @@
         "storageAccountName": {
             "value": "weudststozzzf100"
         },
+        "ShareName": {
+            "value": "user-profiles"
+        },
+        "ShareSize": {
+            "value": 100
+        },
         "PrivateEndpointName": {
             "value": "WEUDSTENPZZZF00"
         },
