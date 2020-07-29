@@ -234,7 +234,7 @@
             "dependsOn": [
                 "[concat('microsoft.storage/storageaccounts/', parameters('storageAccountName'))]",
                 "[concat('Microsoft.Storage/storageAccounts/fileServices', parameters('storageAccountName'), 'default')]",
-                "[concat('Microsoft.Storage/storageAccounts/fileServices/shares', parameters('ShareName'))]"
+                "[concat('Microsoft.Storage/storageAccounts/fileServices/shares/', parameters('ShareName'))]"
             ],
             "resources": [],
             "properties": {
