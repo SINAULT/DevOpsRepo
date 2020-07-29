@@ -232,7 +232,6 @@
             "subscriptionId": "[variables('subscriptionId')]",
             "resourceGroup": "[variables('ResourceGroup')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts/fileServices/shares',parameters('ShareName'))]",
                 "[resourceId('Microsoft.Storage/storageAccounts/fileServices', parameters('storageAccountName'), 'default')]",
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
             ],
