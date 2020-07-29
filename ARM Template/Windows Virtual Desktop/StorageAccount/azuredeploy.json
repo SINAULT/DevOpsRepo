@@ -225,7 +225,7 @@
                         "value": "[variables('privateEndpointConnectionName')]"
                     },
                     "privateEndpointId": {
-                        "value": "[concat('/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/privateEndpoints/',variables('privateEndpointConnectionName'))]"
+                        "value": "[concat('/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/privateEndpoints/',parameters('PrivateEndpointName'))]"
                     },
                     "privateEndpointApiVersion": {
                         "value": "2020-03-01"
