@@ -273,9 +273,8 @@
                     }
                 ],
                 "addressSpace": {
-                    "addressPrefixes": [
+                    "addressPrefixes": 
                         "[variables('AdressSpace')]"
-                    ]
                 }
             },
             "tags": {}
