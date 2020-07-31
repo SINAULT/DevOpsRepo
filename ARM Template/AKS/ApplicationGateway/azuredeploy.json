@@ -91,7 +91,7 @@
         "nodeResourceGroup": "WEUDSTRSGAKSF00",
         "aksDnsPrefix": "WEUDSTDNSZZZF00",
         "aksAgentOsDiskSizeGB": 0,
-        "Min-AgentNode-0": 1,
+        "Min-AgentNode-0": 2,
         "Max-AgentNode-0": 4,
         "networkPlugin": "azure",
         "aksServicePrincipalObjectId": "603fd2bb-009f-45f0-8783-9c2d9dfa811d",

@@ -89,7 +89,7 @@
         "enableRBAC": true,
         "enablePrivateCluster": false,
         "enableOmsAgent": true,
-        "Min-AgentNode-0": 1,
+        "Min-AgentNode-0": 2,
         "Max-AgentNode-0": 4,
         "workspaceName": "WEUDSTLOGZZZF01",
         "omsWorkspaceId": "[concat('/subscriptions/',variables('SubscriptionId'),'/resourceGroups/',variables('ResourceGroupName'),'/providers/Microsoft.OperationalInsights/workspaces/',variables('workspaceName'))]",

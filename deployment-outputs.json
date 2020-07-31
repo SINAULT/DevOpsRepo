@@ -1,0 +1,30 @@
+{
+  "aksApiServerAddress": {
+    "type": "String",
+    "value": "weudstdnszzzf00-b50ac538.hcp.westeurope.azmk8s.io"
+  },
+  "aksClusterName": {
+    "type": "String",
+    "value": "WEUDSTAKSZZZF00"
+  },
+  "applicationGatewayName": {
+    "type": "String",
+    "value": "WEUDSTAGWZZZF00"
+  },
+  "identityClientId": {
+    "type": "String",
+    "value": "b004cc9f-fe38-4e84-b5f9-30e99e16b6b6"
+  },
+  "identityResourceId": {
+    "type": "String",
+    "value": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.ManagedIdentity/userAssignedIdentities/WEUDSTMIDZZZF00"
+  },
+  "resourceGroupName": {
+    "type": "String",
+    "value": "WEUDSTRSGZZZF00"
+  },
+  "subscriptionId": {
+    "type": "String",
+    "value": "dcbde5ac-b981-45f9-b8b6-f77efa07ab2a"
+  }
+}
