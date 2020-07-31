@@ -79,7 +79,7 @@
     "variables": {
         "location": "[resourceGroup().location]",
         "SubscriptionId": "dcbde5ac-b981-45f9-b8b6-f77efa07ab2a",
-        "NodeResourceGroupName": "WEUDSTAKSZZZF00",
+        "NodeResourceGroupName": "WEUDSTRSGAKSF00",
         "ResourceGroupName": "WEUDSTRSGZZZF00",
         "VnetName": "WEUDSTVNTZZZF00",
         "AdressSpace": ["192.168.1.0/24"],
