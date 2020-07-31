@@ -92,7 +92,7 @@
         "Min-AgentNode-0": 1,
         "Max-AgentNode-0": 4,
         "workspaceName": "WEUDSTLOGZZZF01",
-        "omsWorkspaceId": "[concat('/subscriptions/',variables('SubscriptionId'),'/resourceGroups/',variables('ResourceGroupName'),'/',variables('workspaceName'))]",
+        "omsWorkspaceId": "[concat('/subscriptions/',variables('SubscriptionId'),'/resourceGroups/',variables('ResourceGroupName'),'/providers/Microsoft.OperationalInsights/workspaces/',variables('workspaceName'))]",
         "omsSku": "standalone",
         "vnetSubnetID": "[concat('/subscriptions/',variables('SubscriptionId'),'/resourceGroups/',variables('ResourceGroupName'),'/providers/Microsoft.Network/virtualNetworks/',variables('VnetName'),'/','subnets/AKS-NodePool')]",
         "dockerBridgeCidr": "172.17.0.1/16",
