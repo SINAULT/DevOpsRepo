@@ -78,16 +78,23 @@
 
     "variables": {
         "location": "[resourceGroup().location]",
+        "SubscriptionId": "dcbde5ac-b981-45f9-b8b6-f77efa07ab2a",
         "NodeResourceGroupName": "WEUDSTAKSZZZF00",
+        "ResourceGroupName": "WEUDSTRSGZZZF00",
+        "VnetName": "WEUDSTVNTZZZF00",
+        "AdressSpace": ["192.168.1.0/24"],
+        "AdressSubnetSpace": "192.168.1.0/25",
         "dnsPrefix": "WEUDSTDNSZZZF00",
         "osDiskSizeGB": 0,
         "enableRBAC": true,
         "enablePrivateCluster": false,
         "enableOmsAgent": true,
-        "workspaceName": "WEUDSTLOGZZZF00",
-        "omsWorkspaceId": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.OperationalInsights/workspaces/WEUDSTLOGZZZF00",
+        "Min-AgentNode-0": 1,
+        "Max-AgentNode-0": 4,
+        "workspaceName": "WEUDSTLOGZZZF01",
+        "omsWorkspaceId": "[concat('/subscriptions/',variables('SubscriptionId'),'/resourceGroups/',variables('ResourceGroupName'),'/',variables('workspaceName'))]",
         "omsSku": "standalone",
-        "vnetSubnetID": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/AKS-NodePool",
+        "vnetSubnetID": "[concat('/subscriptions/',variables('SubscriptionId'),'/resourceGroups/',variables('ResourceGroupName'),'/providers/Microsoft.Network/virtualNetworks/',variables('VnetName'),'/','subnets/AKS-NodePool')]",
         "dockerBridgeCidr": "172.17.0.1/16",
         "aadSessionKey": "",
         "principalId":"603fd2bb-009f-45f0-8783-9c2d9dfa811d"
@@ -97,8 +104,8 @@
         {
             "apiVersion": "2020-03-01",
             "dependsOn": [
-                "[concat('Microsoft.Resources/deployments/', 'WorkspaceDeployment-20200717161357')]",
-                "Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00"
+                "[concat('Microsoft.Resources/deployments/', 'WorkspaceDeployment')]",
+                "[concat('Microsoft.Network/virtualNetworks/',variables('VnetName'))]"
             ],
             "type": "Microsoft.ContainerService/managedClusters",
             "location": "[variables('location')]",
@@ -117,6 +124,9 @@
                         "osType": "Linux",
                         "storageProfile": "ManagedDisks",
                         "type": "VirtualMachineScaleSets",
+                        "enableAutoScaling": true,
+                        "minCount": "[variables('Min-AgentNode-0')]",
+                        "maxCount": "[variables('Max-AgentNode-0')]",
                         "mode": "System",
                         "vnetSubnetID": "[variables('vnetSubnetID')]"
                     }
@@ -153,7 +163,7 @@
         },
         {
             "type": "Microsoft.Resources/deployments",
-            "name": "SolutionDeployment-20200717161357",
+            "name": "SolutionDeployment",
             "apiVersion": "2017-05-10",
             "resourceGroup": "[split(variables('omsWorkspaceId'),'/')[4]]",
             "subscriptionId": "[split(variables('omsWorkspaceId'),'/')[2]]",
@@ -184,12 +194,12 @@
                 }
             },
             "dependsOn": [
-                "[concat('Microsoft.Resources/deployments/', 'WorkspaceDeployment-20200717161357')]"
+                "[concat('Microsoft.Resources/deployments/', 'WorkspaceDeployment')]"
             ]
         },
         {
             "type": "Microsoft.Resources/deployments",
-            "name": "WorkspaceDeployment-20200717161357",
+            "name": "WorkspaceDeployment",
             "apiVersion": "2017-05-10",
             "resourceGroup": "[split(variables('omsWorkspaceId'),'/')[4]]",
             "subscriptionId": "[split(variables('omsWorkspaceId'),'/')[2]]",
@@ -218,10 +228,10 @@
         },
         {
             "type": "Microsoft.Resources/deployments",
-            "name": "ClusterMonitoringMetricPulisherRoleAssignmentDepl-20200717161357",
+            "name": "ClusterMonitoringMetricPulisherRoleAssignmentDepl",
             "apiVersion": "2017-05-10",
-            "resourceGroup": "WEUDSTRSGZZZF00",
-            "subscriptionId": "dcbde5ac-b981-45f9-b8b6-f77efa07ab2a",
+            "resourceGroup": "[variables('ResourceGroupName')]",
+            "subscriptionId": "[variables('SubscriptionId')]",
             "properties": {
                 "mode": "Incremental",
                 "template": {
@@ -233,38 +243,38 @@
                         {
                             "type": "Microsoft.ContainerService/managedClusters/providers/roleAssignments",
                             "apiVersion": "2018-01-01-preview",
-                            "name": "WEUDSTAKSZZZF00/Microsoft.Authorization/94b68682-7e96-4bf6-a2ee-a6da9a5fe8dc",
+                            "name": "[concat(parameters('resourceName'),'/Microsoft.Authorization/94b68682-7e96-4bf6-a2ee-a6da9a5fe8dc')]",
                             "properties": {
-                                "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', '3913510d-42f4-4e42-8a64-420c390055eb')]",
+                                "roleDefinitionId": "[concat('/subscriptions/',variables('SubscriptionId'), '/providers/Microsoft.Authorization/roleDefinitions/', '3913510d-42f4-4e42-8a64-420c390055eb')]",
                                 "principalId": "[variables('principalId')]",
-                                "scope": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.ContainerService/managedClusters/WEUDSTAKSZZZF00"
+                                "scope": "[concat('/subscriptions/',variables('SubscriptionId'),'/resourceGroups/',variables('ResourceGroupName'),'/providers/Microsoft.ContainerService/managedClusters/',parameters('resourceName'))]"
                             }
                         }
                     ]
                 }
             },
             "dependsOn": [
-                "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.ContainerService/managedClusters/WEUDSTAKSZZZF00"
+                "[concat('/subscriptions/',variables('SubscriptionId'),'/resourceGroups/',variables('ResourceGroupName'),'/providers/Microsoft.ContainerService/managedClusters/',parameters('resourceName'))]"
             ]
         },
         {
             "apiVersion": "2019-09-01",
-            "name": "WEUDSTVNTZZZF00",
+            "name": "[variables('VnetName')]",
             "type": "Microsoft.Network/virtualNetworks",
             "location": "[variables('location')]",
             "properties": {
                 "subnets": [
                     {
                         "name": "AKS-NodePool",
-                        "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/AKS-NodePool",
+                        "id": "[concat('/subscriptions/',variables('SubscriptionId'),'/resourceGroups/',variables('ResourceGroupName'),'/providers/Microsoft.Network/virtualNetworks/',variables('VnetName'),'/subnets/AKS-NodePool')]",
                         "properties": {
-                            "addressPrefix": "192.168.1.0/25"
+                            "addressPrefix": "[variables('AdressSubnetSpace')]"
                         }
                     }
                 ],
                 "addressSpace": {
                     "addressPrefixes": [
-                        "192.168.1.0/24"
+                        "[variables('AdressSpace')]"
                     ]
                 }
             },
@@ -272,10 +282,10 @@
         },
         {
             "type": "Microsoft.Resources/deployments",
-            "name": "ClusterSubnetRoleAssignmentDeployment-20200717161357",
+            "name": "ClusterSubnetRoleAssignmentDeployment",
             "apiVersion": "2017-05-10",
-            "resourceGroup": "WEUDSTRSGZZZF00",
-            "subscriptionId": "dcbde5ac-b981-45f9-b8b6-f77efa07ab2a",
+            "resourceGroup": "[variables('ResourceGroupName')]",
+            "subscriptionId": "[variables('SubscriptionId')]",
             "properties": {
                 "mode": "Incremental",
                 "template": {
@@ -287,18 +297,18 @@
                         {
                             "type": "Microsoft.Network/virtualNetworks/subnets/providers/roleAssignments",
                             "apiVersion": "2017-05-01",
-                            "name": "WEUDSTVNTZZZF00/AKS-NodePool/Microsoft.Authorization/f036f29f-711c-42da-a920-85ccf4fe8af2",
+                            "name": "[concat(variables('VnetName'),'/AKS-NodePool/Microsoft.Authorization/f036f29f-711c-42da-a920-85ccf4fe8af2')]",
                             "properties": {
-                                "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', '4d97b98b-1d4f-4787-a291-c67834d212e7')]",
+                                "roleDefinitionId": "[concat('/subscriptions/', variables('SubscriptionId'), '/providers/Microsoft.Authorization/roleDefinitions/', '4d97b98b-1d4f-4787-a291-c67834d212e7')]",
                                 "principalId": "[variables('principalId')]",
-                                "scope": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/AKS-NodePool"
+                                "scope": "[concat('/subscriptions/',variables('SubscriptionId'),'/resourceGroups/',variables('ResourceGroupName'),'/providers/Microsoft.Network/virtualNetworks/',variables('VnetName'),'/subnets/AKS-NodePool')]"
                             }
                         }
                     ]
                 }
             },
             "dependsOn": [
-                "Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00"
+                "[concat('Microsoft.Network/virtualNetworks/',variables('VnetName'))]"
             ]
         }
     ],
