@@ -131,30 +131,6 @@
                                             "privateLinkServiceNetworkPolicies": "Enabled"
                                         },
                                         "type": "Microsoft.Network/virtualNetworks/subnets"
-                                    },
-                                    {
-                                        "name": "DomainServices",
-                                        "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/DomainServices",
-                                        "etag": "W/\"ca08f931-ba2b-40ae-a7cb-cdaf59308c03\"",
-                                        "properties": {
-                                            "provisioningState": "Succeeded",
-                                            "addressPrefix": "192.168.1.0/28",
-                                            "networkSecurityGroup": {
-                                                "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/networkSecurityGroups/WEUDSTNSGZZZF00"
-                                            },
-                                            "ipConfigurations": [
-                                                {
-                                                    "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/networkInterfaces/aadds-87a51efc680843e99306f4ccc9f35415-nic/ipConfigurations/GK5DI9KU45X8U1EIpcfg"
-                                                },
-                                                {
-                                                    "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/networkInterfaces/aadds-75c14228ae91456ebcb0ff9c9836e2d4-nic/ipConfigurations/GCDXM5PFODVIDVGIpcfg"
-                                                }
-                                            ],
-                                            "delegations": [],
-                                            "privateEndpointNetworkPolicies": "Enabled",
-                                            "privateLinkServiceNetworkPolicies": "Enabled"
-                                        },
-                                        "type": "Microsoft.Network/virtualNetworks/subnets"
                                     }
                                 ],
                                 "virtualNetworkPeerings": [],
