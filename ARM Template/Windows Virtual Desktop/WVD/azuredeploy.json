@@ -221,7 +221,7 @@
             "metadata": {
                 "description": "Hostpool token expiration time"
             },
-            "defaultValue": "2020-07-30T15:24:13.888Z"
+            "defaultValue": "2020-09-03T18:00:00.888Z"
         },
         "hostpoolTags": {
             "type": "object",
