@@ -238,12 +238,6 @@ foreach ($ModuleName in $RequiredModules) {
 	Add-ModuleToAutoAccount -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -ModuleName $ModuleName
 }
 
-if (!$WorkspaceName) {
-	Write-Output "Azure Automation Account Name: $AutomationAccountName"
-	Write-Output "Webhook URI: $($WebhookURI.value)"
-	return
-}
-
 # Check if the log analytic workspace exists
 $LAWorkspace = Get-AzOperationalInsightsWorkspace | Where-Object { $_.Name -eq $WorkspaceName }
 if (!$LAWorkspace) {
