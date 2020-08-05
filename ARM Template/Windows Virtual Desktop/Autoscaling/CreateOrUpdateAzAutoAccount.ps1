@@ -308,8 +308,4 @@ $CustomLogWVDTenantScale = @"
 # Submit the data to the API endpoint
 Send-LogAnalyticsData -customerId $LogAnalyticsWorkspaceId -sharedKey $LogAnalyticsPrimaryKey -Body ([System.Text.Encoding]::UTF8.GetBytes($CustomLogWVDTenantScale)) -logType $TenantScaleLogType
 
-Write-Output "Log Analytics Workspace ID: $LogAnalyticsWorkspaceId"
-Write-Output "Log Analytics Primary Key: $LogAnalyticsPrimaryKey"
-
-Write-Output "Azure Automation Account Name: $AutomationAccountName"
-Write-Output "Webhook URI: $($WebhookURI.value)"
+Write-Output "Deployment Completed."
