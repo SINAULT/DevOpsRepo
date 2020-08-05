@@ -26,7 +26,7 @@ $LogAnalyticsWorkspace = Get-AzOperationalInsightsWorkspace | where -FilterScrip
 
 $AutoAccountConnection = "AzureRunAsConnection"
 
-$WebhookURIAutoVar = Get-AzAutomationVariable -Name 'WebhookURIARMBased' -ResourceGroupName $ResourceGroup -AutomationAccountName $AutoAccount
+$WebhookURIAutoVar = Get-AzAutomationVariable -Name 'WebhookURIARMBased' -ResourceGroupName $ResourceGroup.ResourceGroupName -AutomationAccountName $AutoAccount.AutomationAccountName
 
 $LogAnalyticsWorkspaceId = $LogAnalyticsWorkspace.CustomerId # "If you want to use Log Analytics, enter the Log Analytics Workspace ID returned by when you created the Azure Automation account, otherwise leave it blank"
 $LogAnalyticsPrimaryKey = "tRFUvIZRTgdih+zcFK3oVn2T7KwNgj/nmijsiINhCnUhtPzs2+6XwpzKWFXaAFpsoysRpv3m4dmpopr46k9nBw==" # "If you want to use Log Analytics, enter the Log Analytics Primary Key returned by when you created the Azure Automation account, otherwise leave it blank"
@@ -44,10 +44,10 @@ $LogOffMessageBody = "" # "Enter the body of the message sent to the user before
 $Params = @{
      "AADTenantId"                   = $AADTenantId                             # Optional. If not specified, it will use the current Azure context
      "SubscriptionID"                = $AzSubscription                       # Optional. If not specified, it will use the current Azure context
-     "ResourceGroupName"             = $ResourceGroup         # Optional. Default: "WVDAutoScaleResourceGroup"
+     "ResourceGroupName"             = $ResourceGroup.ResourceGroupName         # Optional. Default: "WVDAutoScaleResourceGroup"
      "Location"                      = $ResourceGroup.Location                  # Optional. Default: "West US2"
      "UseARMAPI"                     = $true
-     "HostPoolName"                  = $WVDHostPool
+     "HostPoolName"                  = $WVDHostPool.Name
      "HostPoolResourceGroupName"     = $WVDHostPool.ResourceGroupName           # Optional. Default: same as ResourceGroupName param value
      "LogAnalyticsWorkspaceId"       = $LogAnalyticsWorkspaceId                 # Optional. If not specified, script will not log to the Log Analytics
      "LogAnalyticsPrimaryKey"        = $LogAnalyticsPrimaryKey                  # Optional. If not specified, script will not log to the Log Analytics
