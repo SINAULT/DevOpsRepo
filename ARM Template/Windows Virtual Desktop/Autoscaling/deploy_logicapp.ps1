@@ -3,7 +3,8 @@ param (
     $User,
     $Password,
     $ADTenant,
-    $SubscriptionId
+    $SubscriptionId,
+    $LogAnalyticsPrimaryKey
 )
 $UserPassword = ConvertTo-SecureString -String $Password -AsPlainText -Force
 $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $User, $UserPassword
@@ -29,7 +30,7 @@ $AutoAccountConnection = "AzureRunAsConnection"
 $WebhookURIAutoVar = Get-AzAutomationVariable -Name 'WebhookURIARMBased' -ResourceGroupName $ResourceGroup.ResourceGroupName -AutomationAccountName $AutoAccount.AutomationAccountName
 
 $LogAnalyticsWorkspaceId = $LogAnalyticsWorkspace.CustomerId # "If you want to use Log Analytics, enter the Log Analytics Workspace ID returned by when you created the Azure Automation account, otherwise leave it blank"
-$LogAnalyticsPrimaryKey = "tRFUvIZRTgdih+zcFK3oVn2T7KwNgj/nmijsiINhCnUhtPzs2+6XwpzKWFXaAFpsoysRpv3m4dmpopr46k9nBw==" # "If you want to use Log Analytics, enter the Log Analytics Primary Key returned by when you created the Azure Automation account, otherwise leave it blank"
+$LogAnalyticsKey = $LogAnalyticsPrimaryKey # "If you want to use Log Analytics, enter the Log Analytics Primary Key returned by when you created the Azure Automation account, otherwise leave it blank"
 $RecurrenceInterval = "15" # "Enter how often you'd like the job to run in minutes, e.g. '15'"
 $BeginPeakTime = "9:00" # "Enter the start time for peak hours in local time, e.g. 9:00"
 $EndPeakTime = "17:00" # "Enter the end time for peak hours in local time, e.g. 18:00"
@@ -50,7 +51,7 @@ $Params = @{
      "HostPoolName"                  = $WVDHostPool.Name
      "HostPoolResourceGroupName"     = $WVDHostPool.ResourceGroupName           # Optional. Default: same as ResourceGroupName param value
      "LogAnalyticsWorkspaceId"       = $LogAnalyticsWorkspaceId                 # Optional. If not specified, script will not log to the Log Analytics
-     "LogAnalyticsPrimaryKey"        = $LogAnalyticsPrimaryKey                  # Optional. If not specified, script will not log to the Log Analytics
+     "LogAnalyticsPrimaryKey"        = $LogAnalyticsKey                  # Optional. If not specified, script will not log to the Log Analytics
      "ConnectionAssetName"           = $AutoAccountConnection              # Optional. Default: "AzureRunAsConnection"
      "RecurrenceInterval"            = $RecurrenceInterval                      # Optional. Default: 15
      "BeginPeakTime"                 = $BeginPeakTime                           # Optional. Default: "09:00"
