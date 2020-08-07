@@ -433,7 +433,7 @@
                         {
                             "type": "Microsoft.ContainerRegistry/registries/providers/roleAssignments",
                             "apiVersion": "2017-05-01",
-                            "name": "[concat(parameters('registryName'), '/Microsoft.Authorization/', guid(resourceGroup().id), 'acraccess')]",
+                            "name": "[concat(parameters('registryName'), '/Microsoft.Authorization/', guid(resourceGroup().id))]",
                             "properties": {
                               "roleDefinitionId": "[variables('AcrPullRole')]",
                               "principalId": "[variables('aksServicePrincipalObjectId')]",
