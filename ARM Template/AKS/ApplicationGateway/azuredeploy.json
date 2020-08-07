@@ -81,7 +81,7 @@
         "vnetName": "WEUDSTVNTZZZF00",
         "kubernetesSubnetName": "AKS",
         "applicationGatewaySubnetName": "APPGATEWAY",
-        "DnsPublicIPPrefix": "exakis-nelite",
+        "DnsPublicIP-Prefix": "exakis-nelite",
         "virtualNetworkAddressPrefix": "192.168.1.0/24",
         "aksSubnetAddressPrefix": "192.168.1.0/25",
         "applicationGatewaySubnetAddressPrefix": "192.168.1.128/28",
@@ -157,7 +157,8 @@
             "properties": {
                 "publicIPAllocationMethod": "Static",
                 "dnsSettings": {
-                    "domainNameLabel": "[variables('DnsPublicIPPrefix')]"
+                    "domainNameLabel": "[variables('DnsPublicIP-Prefix')]"
+                }
             }
         },
         {
@@ -390,7 +391,6 @@
                 "[concat('Microsoft.Resources/deployments/', 'RoleAssignmentDeploymentForKubenetesSp')]"
             ]
         }
-    }
     ],
     "outputs": {
         "subscriptionId": {
