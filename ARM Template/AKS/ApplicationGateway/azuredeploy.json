@@ -65,6 +65,14 @@
                 "description": "Containers DNS server IP address."
             }
         },
+        "registryName": { 
+			"type": "string", 
+			"defaultValue": "WEUDSTACRZZZF00"
+		},
+        "registrySku": { 
+			"type": "string", 
+			"defaultValue": "Basic"
+		},
         "applicationGatewaySku": {
             "defaultValue": "WAF_v2",
             "allowedValues": [
@@ -96,6 +104,7 @@
         "Max-AgentNode-0": 4,
         "networkPlugin": "azure",
         "aksServicePrincipalObjectId": "603fd2bb-009f-45f0-8783-9c2d9dfa811d",
+        "ACRpublicNetworkAccess": "Enabled",
         "vnetId": "[resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'))]",
         "kubernetesSubnetId": "[concat(variables('vnetID'),'/subnets/', variables('kubernetesSubnetName'))]",
         "applicationGatewaySubnetId": "[concat(variables('vnetID'),'/subnets/', variables('applicationGatewaySubnetName'))]",
@@ -107,6 +116,7 @@
         "contributorRole": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
         "managedIdentityOperatorRole": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'f1a07417-d97a-45cb-824c-7a7467783830')]",
         "readerRole": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'acdd72a7-3385-48ef-bd42-f606fba81ae7')]",
+        "AcrPullRole": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d",
         "webApplicationFirewallConfiguration": {
           "enabled": "true",
           "firewallMode": "Detection"
@@ -389,6 +399,50 @@
             "dependsOn": [
                 "[concat('Microsoft.Network/virtualNetworks/', variables('vnetName'))]",
                 "[concat('Microsoft.Resources/deployments/', 'RoleAssignmentDeploymentForKubenetesSp')]"
+            ]
+        },
+        {
+            "type": "Microsoft.ContainerRegistry/registries",
+            "apiVersion": "2019-12-01-preview",
+            "name": "[parameters('registryName')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [],
+            "sku": {
+                "name": "[parameters('registrySku')]"
+            },
+            "properties": {
+                "publicNetworkAccess": "[variables('ACRpublicNetworkAccess')]",
+                "adminUserEnabled": true
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "name": "RoleAssignmentDeploymentForACR",
+            "apiVersion": "2017-05-10",
+            "subscriptionId": "[subscription().subscriptionId]",
+            "resourceGroup": "[resourceGroup().name]",
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {},
+                    "variables": {},
+                    "resources": [
+                        {
+                            "type": "Microsoft.ContainerRegistry/registries/providers/roleAssignments",
+                            "apiVersion": "2017-05-01",
+                            "name": "[concat(parameters('registryName'), '/Microsoft.Authorization/', 'AcrPull')]",
+                            "properties": {
+                              "roleDefinitionId": "[variables('AcrPullRole')]",
+                              "principalId": "[variables('aksServicePrincipalObjectId')]"
+                            }
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[concat('Microsoft.ContainerRegistry/registries/', parameters('registryName'))]"
             ]
         }
     ],
