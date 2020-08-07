@@ -112,6 +112,7 @@
         "applicationGatewayId": "[resourceId('Microsoft.Network/applicationGateways', variables('applicationGatewayName'))]",
         "identityId": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('identityName'))]",
         "aksClusterId": "[resourceId('Microsoft.ContainerService/managedClusters', parameters('aksClusterName'))]",
+        "acrId": "[resourceId('Microsoft.ContainerRegistry/registries',parameters('registryName'))]",
         "networkContributorRole": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', '4d97b98b-1d4f-4787-a291-c67834d212e7')]",
         "contributorRole": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
         "managedIdentityOperatorRole": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'f1a07417-d97a-45cb-824c-7a7467783830')]",
@@ -432,10 +433,12 @@
                         {
                             "type": "Microsoft.ContainerRegistry/registries/providers/roleAssignments",
                             "apiVersion": "2017-05-01",
-                            "name": "[concat(parameters('registryName'), '/Microsoft.Authorization/', 'AcrPull')]",
+                            "name": "[concat(parameters('registryName'), '/Microsoft.Authorization/', guid(resourceGroup().id), 'acraccess')]",
                             "properties": {
                               "roleDefinitionId": "[variables('AcrPullRole')]",
-                              "principalId": "[variables('aksServicePrincipalObjectId')]"
+                              "principalId": "[variables('aksServicePrincipalObjectId')]",
+                              "scope": "[variables('acrId')]",
+                              "principalType": "ServicePrincipal"
                             }
                         }
                     ]
