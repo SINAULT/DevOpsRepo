@@ -45,7 +45,7 @@
             "value": "MicrosoftWindowsDesktop"
         },
         "vmGalleryImageSKU": {
-            "value": "20h1-evd-o365pp"
+            "value": "19h2-evd-o365pp"
         },
         "existingVnetName": {
             "value": "WEUDSTVNTZZZF00"
@@ -72,7 +72,7 @@
             "value": ""
         },
         "tokenExpirationTime": {
-            "value": "2020-08-11T18:00:00.888Z"
+            "value": "2020-08-26T18:00:00.888Z"
         },
         "apiVersion": {
             "value": "2019-12-10-preview"

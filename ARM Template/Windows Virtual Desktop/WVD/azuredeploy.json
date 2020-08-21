@@ -116,7 +116,11 @@
             "metadata": {
                 "description": "(Required when vmImageType = Gallery) Gallery image SKU."
             },
-            "defaultValue": "20h1-evd-o365pp"
+            "defaultValue": "19h2-evd-o365pp",
+            "allowedValues": [
+                "19h2-evd-o365pp",
+                "20h1-evd-o365pp"
+            ]
         },
         "vmImageVhdUri": {
             "type": "string",
@@ -199,8 +203,7 @@
             "type": "string",
             "metadata": {
                 "description": "OUPath for the domain join"
-            },
-            "defaultValue": "OU=WVDSessionHost,DC=lyon-ia-ouverte,DC=com"
+            }
         },
         "domain": {
             "type": "string",
