@@ -80,6 +80,19 @@
                                 },
                                 "subnets": [
                                     {
+                                        "name": "DomainServices",
+                                        "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/DomainServices",
+                                        "etag": "W/\"ca08f931-ba2b-40ae-a7cb-cdaf59308c03\"",
+                                        "properties": {
+                                            "provisioningState": "Succeeded",
+                                            "addressPrefix": "192.168.1.0/28",
+                                            "delegations": [],
+                                            "privateEndpointNetworkPolicies": "Enabled",
+                                            "privateLinkServiceNetworkPolicies": "Enabled"
+                                        },
+                                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                                    },
+                                    {
                                         "name": "DomainAdministration",
                                         "id": "/subscriptions/dcbde5ac-b981-45f9-b8b6-f77efa07ab2a/resourceGroups/WEUDSTRSGZZZF00/providers/Microsoft.Network/virtualNetworks/WEUDSTVNTZZZF00/subnets/DomainAdministration",
                                         "etag": "W/\"ca08f931-ba2b-40ae-a7cb-cdaf59308c03\"",
