@@ -63,7 +63,7 @@
             "value": false
         },
         "ouPath": {
-            "value": "OU=WVDSessionHost,DC=lyon-ia-ouverte,DC=com"
+            "value": ""
         },
         "domain": {
             "value": "lyon-ia-ouverte.com"
