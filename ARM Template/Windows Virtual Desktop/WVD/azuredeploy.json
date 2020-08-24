@@ -319,7 +319,7 @@
         "networkSecurityGroupId": "[concat('/subscriptions/',variables('subscription'),'/resourceGroups/',variables('resourceGroupName'),'/providers/Microsoft.Network/networkSecurityGroups/',variables('networkSecurityGroupName'))]",
         "networkSecurityGroupRules": [],
         "vmTemplate": "{\"domain\":\"lyoniaexakisnelite.onmicrosoft.com\",\"galleryImageOffer\":\"office-365\",\"galleryImagePublisher\":\"MicrosoftWindowsDesktop\",\"galleryImageSKU\":\"20h1-evd-o365pp\",\"imageType\":\"Gallery\",\"imageUri\":null,\"customImageId\":null,\"namePrefix\":\"WEUDSTWVD\",\"osDiskType\":\"StandardSSD_LRS\",\"useManagedDisks\":true,\"vmSize\":{\"id\":\"Standard_D2s_v3\",\"cores\":2,\"ram\":8},\"galleryItemId\":\"MicrosoftWindowsDesktop.office-36520h1-evd-o365pp\"}",
-        "createVMs": "[greater(parameters('vmNumberOfInstances'),0)]",
+        "createVMs": "[greater(parameters('vmNumberOfInstances'),1)]",
         "rdshManagedDisks": "[if(equals(parameters('vmImageType'), 'CustomVHD'), variables('vmUseManagedDisks'), bool('true'))]",
         "rdshPrefix": "[concat(parameters('vmNamePrefix'),'-')]",
         "avSetSKU": "[if(variables('rdshManagedDisks'), 'Aligned', 'Classic')]",
