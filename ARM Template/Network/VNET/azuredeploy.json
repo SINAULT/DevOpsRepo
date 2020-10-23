@@ -1,11 +1,7 @@
 {
-    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "location": {
-            "type": "string",
-            "defaultValue": "westeurope"
-        },
         "virtualNetworkName": {
             "type": "string",
             "defaultValue": "WEUDSTVNTZZZF00"
@@ -24,39 +20,27 @@
         },
         "subnet0_addressRange": {
             "type": "string",
-            "defaultValue": "192.168.1.0/24"
-        },
-        "ipv6Enabled": {
-            "type": "bool",
-            "defaultValue": false
+            "defaultValue": "192.168.1.0/25"
         },
         "ddosProtectionPlanEnabled": {
             "type": "bool",
             "defaultValue": false
-        },
-        "firewallEnabled": {
-            "type": "bool",
-            "defaultValue": false
-        },
-        "bastionEnabled": {
-            "type": "bool",
-            "defaultValue": false
         }
     },
-    "variables": {},
+    "variables": {
+        "location": "[resourceGroup().location]"
+    },
     "resources": [
         {
             "name": "[parameters('virtualNetworkName')]",
             "type": "Microsoft.Network/VirtualNetworks",
             "apiVersion": "2019-09-01",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "dependsOn": [],
             "tags": {},
             "properties": {
                 "addressSpace": {
-                    "addressPrefixes": [
-                        "[parameters('addressSpaces')]"
-                    ]
+                    "addressPrefixes": "[parameters('addressSpaces')]"
                 },
                 "subnets": [
                     {
